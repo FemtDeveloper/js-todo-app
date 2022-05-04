@@ -1,6 +1,12 @@
-import { saludar } from './js/componentes';
-import './styles.css';
+import "./styles.css";
+import { TodoList, Todo } from "./classes";
+import { crearTodoHtml } from "./js/componentes";
 
-const nombre = 'Fernando';
+export const todoList = new TodoList();
 
-saludar( nombre );
+// todoList.todos.forEach((todo) => crearTodoHtml(todo));
+
+// cuando es el mismo parametro se puede invocar a la función solamente
+todoList.todos.forEach(crearTodoHtml);
+
+console.log("todos:", todoList.todos);
