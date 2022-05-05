@@ -8,6 +8,37 @@ const btnBorrarCompletados = document.querySelector(".clear-completed");
 const ulFiltros = document.querySelector(".filters");
 const anchorFiltros = document.querySelectorAll(".filtro");
 
+divTodoList.addEventListener("click", (e) => {
+  const nombreElemento = e.target.localName;
+  const todoElemento = e.target.parentElement.parentElement;
+  const todoId = todoElemento.getAttribute("data-id");
+
+  if (nombreElemento.includes("input")) {
+    todoList.marcarCompletado(todoId);
+    todoElemento.classList.toggle("completed");
+  } else if (nombreElemento.includes("button")) {
+    todoList.eliminarTodo(todoId);
+    divTodoList.removeChild(todoElemento);
+  }
+});
+
+// divTodoList.addEventListener("click", (event) => {
+//   const nombreElemento = event.target.localName;
+//   const todoElemento = event.target.parentElement.parentElement;
+//   const todoId = todoElemento.getAttribute("data-id");
+
+//   if (nombreElemento.includes("input")) {
+//     // click en el check
+//     todoList.marcarCompletado(todoId);
+//     todoElemento.classList.toggle("completed");
+//   } else if (nombreElemento.includes("button")) {
+//     // hay que borrar el todo
+
+//     todoList.eliminarTodo(todoId);
+//     divTodoList.removeChild(todoElemento);
+//   }
+// });
+
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `<li class='${
     todo.completado ? "completed" : ""
@@ -27,6 +58,7 @@ export const crearTodoHtml = (todo) => {
   divTodoList.append(div.firstElementChild);
   return div.firstElementChild;
 };
+
 txtInput.addEventListener("keyup", (e) => {
   if (e.key === "Enter" && txtInput.value.length > 0) {
     console.log(txtInput.value);
@@ -50,20 +82,6 @@ ulFiltros.addEventListener("click", (e) => {
       todoList.nuevoTodo(nuevoTodo);
       crearTodoHtml(nuevoTodo);
       txtInput.value = "";
-    }
-  });
-
-  divTodoList.addEventListener("click", (e) => {
-    const nombreElemento = e.target.localName;
-    const todoElemento = e.target.parentElement.parentElement;
-    const todoId = todoElemento.getAttribute("data-id");
-
-    if (nombreElemento.includes("input")) {
-      todoList.marcarCompletado(todoId);
-      todoElemento.classList.toggle("completed");
-    } else if (nombreElemento.includes("button")) {
-      todoList.eliminarTodo(todoId);
-      divTodoList.removeChild(todoElemento);
     }
   });
 
