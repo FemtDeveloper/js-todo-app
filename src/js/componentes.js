@@ -1,7 +1,6 @@
 import { todoList } from "..";
 import { Todo } from "../classes";
 
-// Referencias en el HTML
 const divTodoList = document.querySelector(".todo-list");
 const txtInput = document.querySelector(".new-todo");
 const btnBorrarCompletados = document.querySelector(".clear-completed");
